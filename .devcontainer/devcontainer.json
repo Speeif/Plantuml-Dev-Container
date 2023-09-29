@@ -25,7 +25,7 @@
 				"plantuml.exportFormat": "png", 				// Default export format
 				"plantuml.exportOutDir": "out", 			// Default export folder
 				"plantuml.render": "Local",
-				"plantuml.jar": "opt/plantuml.jar"
+				"plantuml.jar": "/opt/plantuml.jar"
 			}
 		}
 	}
