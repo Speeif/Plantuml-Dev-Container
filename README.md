@@ -1,6 +1,6 @@
 # Plantuml devcontainer and environment
 > IMPORTANT NOTICE:
-> This project is still under construction, and should not be considered fully functional it its current version. Refer to [#todo](#todo) for an overview of missing parts.
+> This project is still under construction, and should not be considered fully functional in its current version. Refer to [#todo](#todo) for what functionality is missing.
 
 > Do note that this project is designed for usage with the vscode editor, and the vscode extension called [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
