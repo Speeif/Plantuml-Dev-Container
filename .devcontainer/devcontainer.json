@@ -24,6 +24,7 @@
 			"settings": {
 				"plantuml.exportFormat": "png", 				// Default export format
 				"plantuml.exportOutDir": "out", 			// Default export folder
+				"plantuml.diagramsRoot": "diagrams",
 				"plantuml.render": "Local",
 				"plantuml.jar": "/opt/plantuml.jar"
 			}

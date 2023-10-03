@@ -1,0 +1,21 @@
+@startuml System interactions
+!include ../config.puml
+left to right direction
+frame "<b>UC</b> System interactions"{
+    
+    actor A1 as "Customer"
+    actor A2 as "Supporter"
+        
+    rectangle s1 as "System"{
+        usecase uc1 as "usecase"
+    }
+    
+    ' due to the processor having problem with placement of actors,
+    ' the flow has been specifically set here.
+    A1 -[hidden]d-s1
+    A2 -[hidden]d-s1
+    A2 -r-|> A1 : " "
+}
+
+caption use case diagram environment
+@enduml

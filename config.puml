@@ -1,0 +1,5 @@
+' Standard settings
+skinparam style strictuml
+skinparam FrameFontStyle plain
+' Shorter arrow lengths with this layout
+!pragma layout smetana

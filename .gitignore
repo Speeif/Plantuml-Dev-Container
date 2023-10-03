@@ -1,1 +1,15 @@
+# Output directory
 out/
+
+# File extensions
+*.png
+*.svg
+*.eps
+*.html
+*.latex
+*.pdf
+*.scxml
+*.txt
+*.utxt
+*.vdx
+*.xmi

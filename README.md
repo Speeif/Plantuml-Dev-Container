@@ -14,9 +14,11 @@ A repository that is designed as a `plantuml` development environment, that auto
 * `An internet connection` (only initially)
 
 ## Snippets
+> All of the snippets are created based on requirements from this [source](https://sparxsystems.com/resources/tutorials/uml2/).
 I have found the current extensions which include plantuml snippets lacking, and have therefore written some of my own. I am striving to keeping the snippet's prefixes very consistent, and have set some rules for the naming of prefixes.
 
 One such rule, is that each element element should have a base prefix, but all variants of such an element should have an extension of that prefix. E.g. the prefix `uml` will create the normal boiler plate for an uml diagram, while `uml:uc` will create the boiler plate specific for a use case diagram.
+
 
 All **component** snippets will use the extended version of itself, with a name and an identifier. E.g. `actor` will return `actor "name" as A1`. A common extension is the **"block"** extension, which is simply opening a block for the component. E.g. `actor:b` will return `actor "name" as A1 {}`.
 
@@ -40,9 +42,4 @@ Therefore, with the introduction of dockerisation into my repetoire, I found it 
 There are included snippets for some, if not all, components available for the most environments.
 
 ## Todo
-- [ ] add full snippet support for usecase environment. 
-- [ ] add full snippet support for sequence environment.
-- [ ] add full snippet support for class environment.
-- [ ] add full snippet support for activity environment.
-- [ ] Construct own docker container for installation of needed software
-    - crrently this project uses the latest image supported by plantuml. 
+Check the `/.docs/` folder for any missing functionality. Each file correspond to a piece of missing functionality, and each file goes further into detail on how far along this remaining functionality has gotten.
