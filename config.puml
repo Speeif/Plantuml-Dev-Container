@@ -3,3 +3,9 @@ skinparam style strictuml
 skinparam FrameFontStyle plain
 ' Shorter arrow lengths with this layout
 !pragma layout smetana
+
+skinparam Rectangle<<layout>>{
+    FontSize 0
+    BorderThickness 0
+    StereotypeFontSize 0
+}

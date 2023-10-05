@@ -1,21 +1,131 @@
 @startuml System interactions
-!include ../config.puml
+' !include ../config.puml
 left to right direction
 frame "<b>UC</b> System interactions"{
     
     actor A1 as "Customer"
     actor A2 as "Supporter"
+    A1 -l[hidden]-A2
         
     rectangle s1 as "System"{
-        usecase uc1 as "usecase"
+        together{
+            usecase uc1 as "Open support \npage"
+            usecase uc2 as "describe problem"
+            usecase uc3 as "Open chat room"
+            usecase uc4 as "notify customer"
+            usecase uc5 as "Notify supporter"
+            usecase uc6 as "Chat"
+
+            uc1 -[hidden]l- uc2
+            uc2 -[hidden]l- uc3
+            uc3 -[hidden]l- uc4
+
+            uc2 .r.> uc1 : "<<extend>>"
+            uc3 .r.> uc2 : "<<extend>>"
+
+            A1 -- uc1
+            A1 -- uc2
+            A1 -- uc3
+
+            uc4 -u-> A1
+            uc5 -u-> A2
+            ' chat
+            uc6 -u- A1
+            uc6 -u- A2
+        }
+
+        together{
+            usecase uc7 as "Find available supporter"
+            usecase uc8 as "No available supporters"
+            usecase uc9 as "Wait untill supporter available"
+
+            uc8 .l.> uc7 : "<<extend>>"
+            uc9 .l.> uc8 : "<<include>>"
+        }
+
+        uc7 .u.> uc3 : "<<include>>"
+        
+
+        uc4 .d.> uc7 : "<<extend>>"
+        uc4 .d.> uc8 : "<<extend>>"
+        uc4 .d.> uc9 : "<<include>>"
+
+        uc5 .d.> uc9 : "<<include>>"
+        
+        
+        
+        
+        
+
+
+               
     }
     
     ' due to the processor having problem with placement of actors,
     ' the flow has been specifically set here.
     A1 -[hidden]d-s1
     A2 -[hidden]d-s1
-    A2 -r-|> A1 : " "
+    
 }
 
 caption use case diagram environment
+@enduml
+
+
+@startuml Request support
+!include ../config.puml
+mainframe "**SQ** Get support"
+        actor       cus as "Customer"
+        participant sys as "System"
+        actor       sup as "Supporter"
+        
+        cus -> sys : Go to support page
+        sys -> cus
+        cus -> sys : Fill in ticket form
+        sys -> cus : Form validation
+        cus -> sys : Send ticket for support
+        activate sys
+            sys -> sys : Check availability
+            alt Supporter unavailable
+                loop untill supporter available
+                    sys-> sys: Check availability
+                end
+            else Supporter available
+                sys -> sup : Send ticket information
+                sup -> sys : Initiates communication
+                sys -> cus : Starts connection
+                cus -> sys
+                sys -> sup : Starts connection
+                sup -> sys
+            end
+        deactivate sys
+
+        
+@enduml
+
+@startuml Recieving support
+!include ../config.puml
+mainframe "**SQ** Receiving support"
+        actor       cus as "Customer"
+        participant sys as "System"
+        actor       sup as "Supporter"
+        
+        
+        activate sys
+            sup -> cus : Initiates communication
+            cus -> sup : Explains problem
+
+            alt Supporter knows a solution
+                sup -> cus : Guides customer to solution
+                cus -> sup : Verifies solution was the answer
+                cus -> sys : Closes chat
+                sup -> sys : Supporter closes ticket
+            else Suppoer doe not know a solution
+                sup -> cus : explores probelm with customer
+                cus -> sup : gives detailed step by step directions
+                sup -> sys : Notes down problem in own terms
+                cus -> sys : Verifies the added information
+                cus -> sup : gives acceptance.        
+            end
+        deactivate sys
 @enduml

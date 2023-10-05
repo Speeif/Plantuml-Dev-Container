@@ -2,19 +2,18 @@
 	/**	
 	*	When creating new snippets, please follow the these guidelines.
 	*	* Use ":" between prefixes for variants,
-	*	* Use "+" between prefixes for options.
+	*	* Use "+" between prefixes for arguments.
 	*	
+	*	*Base class* is the base type of component. E.g. rectangle is just a rectangle
+	*	*Variant* is a component that varies in design. E.g. the base class `uml` has a variant called `uml"uc`
+	*	*Arguments* is to alter the base class or variant to follow ruling. E.g. `rect+b` creates a rectangle block with open brackets.
 	*/
-	// * 
-	// 
-	//
-	// **Variants** is the same type of component and/or template, just with
 	// varying denotation.
-	// ====================================================================
-	// ############################ ENVIRONMENT ###########################
-	// ############################# STANDARD #############################
-	// ====================================================================
-	"Start diagram":{
+	// !==================================================================! //
+	// !############################ ENVIRONMENT #########################! //
+	// !############################# STANDARD ###########################! //
+	// !==================================================================! //
+	"uml.diagram":{
 		"scope":"plantuml",
 		"prefix":["startuml","@startuml","uml","new diagram", "diagram"],
 		"body":[
@@ -29,11 +28,11 @@
 		],
 		"description":"Start a plantuml diagram off with this command."
 	},
-	// ====================================================================
-	// ############################ ENVIRONMENT ###########################
-	// ############################# USECASE ##############################
-	// ====================================================================
-	"Start usecase diagram":{
+	// !==================================================================! //
+	// !############################ ENVIRONMENT #########################! //
+	// !############################# USECASE ############################! //
+	// !==================================================================! //
+	"uml.diagram.usecase":{
 		"scope":"plantuml",
 		"prefix":["uml:uc","uml usecase"],
 		"body":[
@@ -60,7 +59,7 @@
 		],
 		"description":"usecase plantuml environment"
 	},
-	"Start usecase template":{
+	"uml.diagram.usecase.example":{
 		"scope":"plantuml",
 		"prefix":["uml:uc+exmpl","uml usecase example"],
 		"body":[
@@ -109,7 +108,7 @@
 			"            ' pointed from use case, is a choice to satisfy",
 			"            ' the pointed to usecase.",
 			"            ' E.g. when you withdraw money, you can do so in",
-			"            ' $10 or $20 dollar increments. ",
+			"            ' \$10 or \$20 dollar increments. ",
 			"            uc4 -u-|> uc2 : (derived)",
 			"            uc5 -u-|> uc2 : (derived)",
 			"        }",
@@ -147,12 +146,40 @@
 		],
 		"description":"An example of a usecase diagram, with documentation of how to design one."
 	},
-	// ==================================================================== //
-	// ############################# COMPONENTS ########################### //
-	// ==================================================================== //
+	"UML.usecase.extend":{
+		"scope":"plantuml",
+		"prefix":["uc.ext","extend","<<extend>>"],
+		"body":[
+			"${1:firstUseCase} .u.> ${2:secondUseCase} : \"<<extend>>\"",
+			"$0"
+		],
+		"description":"Extend relationship between usecases in the usecase environment"
+	},
+	"UML.usecase.include":{
+		"scope":"plantuml",
+		"prefix":["uc.inc","include","<<include>>"],
+		"body":[
+			"${1:firstUseCase} .u.> ${2:secondUseCase} : \"<<include>>\"",
+			"$0"
+		],
+		"description":"Include relationship between usecases in the usecase environment"
+	},
+	"Usecase":{
+		"scope":"plantuml",
+		"prefix":["uc.uc","usecase"],
+		"body":[
+			"usecase ${2:identification} as \"${1:usecaseName}\"",
+			"$0"
+		],
+		"description":"Plantuml usecase"
+	},
+	// !==================================================================! //
+	// !############################# COMPONENTS #########################! //
+	// !##################################################################! //
+	// !==================================================================! //
 	"Rectangle":{
 		"scope":"plantuml",
-		"prefix":["rect","Rectangle"],
+		"prefix":["rect","rectangle"],
 		"body":[
 			"rectangle ${2:identification} as \"${1:rectName}\"",
 			"$0"
@@ -169,14 +196,6 @@
 		],
 		"description":"Block version of rectangle component"
 	},
-	"Usecase":{
-		"scope":"plantuml",
-		"prefix":["uc","usecase"],
-		"body":[
-			"usecase ${2:identification} as \"${1:usecaseName}\""
-		],
-		"description":"Plantuml usecase"
-	},
 	"together component":{
 		"scope":"plantuml",
 		"prefix":["t","together"],
@@ -192,12 +211,14 @@
 		"prefix":["act","actor"],
 		"body":[
 			"actor ${2:identifier} as \"${1:name}\"$0",
+			"$0"
 		],
 		"description":"Creates an actor"
 	},
-	// ==================================================================== //
-	// ##################### OPTIONAL LAYOUT COMPONENTS ################### //
-	// ==================================================================== //
+	// !==================================================================! //
+	// !############################ COMPONENTS ##########################! //
+	// !######################### OPTIONAL LAYOUT ########################! //
+	// !==================================================================! //
 	"rect layout":{
 		"scope":"plantuml",
 		"prefix":["rect:l","rectangle layout"],
@@ -207,6 +228,26 @@
 			"}"
 		],
 		"description":"[NOTE: Use the rect+l:param before this block, for invisibility]\\n An invisible rectangle used for grouping elements together."
-	}
+	},
+	// !==================================================================! //
+	// !############################ COMPONENTS ##########################! //
+	// !############################# Arrows #############################! //
+	// !==================================================================! //
+	"UML.usecase.arrows":{
+		"scope":"plantuml",
+		"prefix":["a.uc","usecase arrow"],
+		"body":[
+			"${1|-->,--,..,..>,--*,--o,--\\>|} $0"		
+		],
+		"description":"UML usecase arrows"
+	},
+	"UML.arrows":{
+		"scope":"plantuml",
+		"prefix":["a","arrows"],
+		"body":[
+			"${1|-->,--,..,..>,--*,--o,--\\>|} $0"		
+		],
+		"description":"All supported PLANTUML arrows"
+	},
 }
 	
