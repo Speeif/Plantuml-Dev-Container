@@ -1,0 +1,71 @@
+@startuml Supporter workflow for existing case
+partition **ACT** Supporter workflow for existing case{
+    start
+    :Waiting support;
+    
+    repeat :supporter reads problem;
+    :supporter picks up case;
+    note left
+    state="started"
+    end note
+
+    if(Needs information) then (yes)
+        :contact internal member for
+        clarification;
+        note left
+            state="waiting intern"
+        end note
+        if (deemed irrelevant) then (yes)
+            :describe irrelevancy;
+            note left
+                state="parked "
+            end note
+            end
+            note left
+                Case has been deemed irrelevant
+                and therefore would be deleted,
+                but is put in state="parked"
+                indefinitely
+            end note
+        else (no)
+            :supplies information;
+        endif
+    else (no)
+        if (system is faulty) then (yes)
+            :send to development;
+            note right
+                state="development"
+            end note
+            :notify customer;
+            stop
+            note right
+                Case is being made into a 
+                change request (CR) for
+                the development team to
+                resolve
+            end note
+            start
+            note right
+                change request (CR) has
+                been resolved
+            end note
+            :verify with customer;
+        endif
+        :contact customer about
+        solution;
+        note right
+            state="waiting exrern"
+        end note
+    endif
+    repeat while (still needs support) is (yes) not (no)
+    :Write summary;
+    note left
+        Document problem, write solution,
+        send summary to customer, and
+        create internal documentation for
+        future use.
+    end note
+    stop
+}
+caption The life of a case from the perspective of a supporter
+@enduml

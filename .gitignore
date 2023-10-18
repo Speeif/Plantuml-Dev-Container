@@ -13,3 +13,8 @@ out/
 *.utxt
 *.vdx
 *.xmi
+
+# # Diagrams
+# Diagrams/*
+
+# !Diagrams/test.pum

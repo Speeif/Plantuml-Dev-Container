@@ -39,7 +39,7 @@
 			"@startuml ${1:diagram name}",
 			"!include ../config.puml",
 			"left to right direction",
-			"frame \"<b>UC</b> ${1:diagram name}\"{",
+			"frame \"**UC** ${1:diagram name}\"{",
 			"    $0"
 			"    actor A1 as \"User\"",
 			"    actor A2 as \"Business\"",
@@ -172,6 +172,41 @@
 			"$0"
 		],
 		"description":"Plantuml usecase"
+	},
+	// !==================================================================! //
+	// !############################ ENVIRONMENT #########################! //
+	// !############################# Activity ###########################! //
+	// !==================================================================! //
+	"uml.diagram.activity":{
+		"scope":"plantuml",
+		"prefix":["uml:act","uml activity"],
+		"body":[
+			"@startuml ${TM_FILENAME_BASE/(^\\w)/${0:/upcase}/}",
+			"partition **ACT** ${TM_FILENAME_BASE/(^\\w)/${0:/upcase}/} {",
+			"	start",
+			"	:human;",
+			"	if(laugh) then",
+			"		:exhausted;",
+			"	else",
+			"		:not exhausted;",
+			"	endif",
+			"	stop",
+			"}",
+			"@enduml"
+		],
+		"description":"Activity diagram environment"
+	},
+	"uml.diagram.activity.if":{
+		"scope":"plantuml",
+		"prefix":["act.if","activity if"],
+		"body":[
+			"if(${1:statment}) then (${2:successMessage})",
+			"	:${4:activitySuccess};",
+			"else (${3:failMessage})",
+			"	:${5:activityFailure};",
+			"endif"
+		],
+		"description":"Activity diagram if statement"
 	},
 	// !==================================================================! //
 	// !############################# COMPONENTS #########################! //
